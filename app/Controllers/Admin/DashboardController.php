@@ -31,7 +31,7 @@ class DashboardController extends AdminController
             'system_info' => $systemInfo
         ];
 
-        $this->renderAdmin('admin/dashboard/index', $data);
+        $this->renderAdmin('/dashboard/index', $data);
     }
     
     /**

@@ -10,6 +10,7 @@ class View
 {
     private $viewPath;
     private $layoutPath;
+    private $adminViewPath; // Nueva propiedad para vistas del panel de administración
     private $data = [];
     private $sections = [];
     private $currentSection = null;
@@ -18,6 +19,7 @@ class View
     {
         $this->viewPath = TUKUCHI_APP_PATH . '/views';
         $this->layoutPath = TUKUCHI_APP_PATH . '/views/layouts';
+        $this->adminViewPath = TUKUCHI_APP_PATH . '/views/admin'; // Inicializa la ruta de vistas admin
     }
 
     /**
@@ -50,33 +52,37 @@ class View
     public function renderWithLayout($template, $data = [], $layout = 'main')
     {
         $this->data = array_merge($this->data, $data);
-        
-        // Renderizar la vista principal
-        $templateFile = $this->viewPath . '/' . $template . '.php';
-        
+
+        // Determinar la ruta de la vista según el layout
+        if ($layout === 'admin') {
+            $templateFile = $this->adminViewPath . '/' . ltrim($template, '/') . '.php';
+        } else {
+            $templateFile = $this->viewPath . '/' . ltrim($template, '/') . '.php';
+        }
+
         if (!file_exists($templateFile)) {
             throw new \Exception("Vista no encontrada: {$templateFile}");
         }
-        
+
         // Extraer variables para la vista
         extract($this->data);
-        
+
         // Capturar contenido de la vista
         ob_start();
         include $templateFile;
         $content = ob_get_clean();
-        
+
         // Renderizar layout
         $layoutFile = $this->layoutPath . '/' . $layout . '.php';
-        
+
         if (!file_exists($layoutFile)) {
             throw new \Exception("Layout no encontrado: {$layoutFile}");
         }
-        
+
         // Hacer disponible el contenido en el layout
         $this->data['content'] = $content;
         extract($this->data);
-        
+
         include $layoutFile;
     }
 

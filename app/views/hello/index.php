@@ -1,0 +1,1 @@
+<h1><?= $this->escape($mensaje) ?></h1>

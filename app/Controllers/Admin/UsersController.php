@@ -26,7 +26,7 @@ class UsersController extends AdminController
         ];
 
         // Forzar renderizado con layout de administración
-        $this->view->renderWithLayout('admin/users/index', $data, 'admin');
+        $this->view->renderWithLayout('/users/index', $data, 'admin');
     }
 
     /**
@@ -38,7 +38,7 @@ class UsersController extends AdminController
             'title' => 'Crear Nuevo Usuario - Administración'
         ];
 
-        $this->renderAdmin('admin/users/create', $data);
+        $this->view->renderWithLayout('/users/index', $data, 'admin');
     }
 
     /**
@@ -123,7 +123,7 @@ class UsersController extends AdminController
             'user' => $user
         ];
 
-        $this->renderAdmin('admin/users/edit', $data);
+        $this->view->renderWithLayout('/users/index', $data, 'admin');
     }
 
     /**
@@ -236,5 +236,30 @@ class UsersController extends AdminController
         }
 
         $this->redirect('admin/users');
+    }
+
+    /**
+     * Mostrar detalle de un usuario
+     */
+    public function showAction($params = [])
+    {
+        $userId = $params['id'] ?? 0;
+        $userModel = new User();
+        $user = $userModel->find($userId);
+
+        if (!$user) {
+            $this->view->renderWithLayout('/errors/error', [
+                'title' => 'Usuario no encontrado',
+                'message' => 'El usuario que intentas ver no existe.'
+            ], 'admin');
+            return;
+        }
+
+        $data = [
+            'title' => 'Detalle de Usuario - Administración',
+            'user' => $user
+        ];
+
+        $this->view->renderWithLayout('/users/show', $data, 'admin');
     }
 }

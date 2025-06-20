@@ -77,6 +77,9 @@
                                         <td class="align-middle"><?= $this->escape($user->created_at) ?></td>
                                         <td class="align-middle text-end">
                                             <div class="btn-group" role="group">
+                                                <a href="<?= $this->url('admin/users/show', ['id' => $user->id]) ?>" class="btn btn-outline-info btn-sm rounded-0">
+                                                    <i class="bi bi-eye"></i> Ver
+                                                </a>
                                                 <a href="<?= $this->url('admin/users/edit', ['id' => $user->id]) ?>" class="btn btn-outline-primary btn-sm rounded-0">
                                                     <i class="bi bi-pencil"></i> Editar
                                                 </a>

@@ -33,8 +33,8 @@ abstract class Model
             $this->table = $this->getTableName();
         }
         
-        // Llenar atributos
-        $this->fill($attributes);
+        // Llenar atributos (forzar para permitir id y protegidos desde BD)
+        $this->fill($attributes, true);
     }
 
     /**
@@ -87,10 +87,10 @@ abstract class Model
     /**
      * Llenar modelo con atributos
      */
-    public function fill(array $attributes)
+    public function fill(array $attributes, $force = false)
     {
         foreach ($attributes as $key => $value) {
-            if ($this->isFillable($key)) {
+            if ($force || $this->isFillable($key)) {
                 $this->attributes[$key] = $value;
             }
         }
