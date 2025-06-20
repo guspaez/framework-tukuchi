@@ -1,22 +1,57 @@
 # 🐦 Framework Tukuchi
 
+![PHP](https://img.shields.io/badge/PHP-7.4%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Estado](https://img.shields.io/badge/estado-en%20desarrollo-yellow)
+
 **Potenciando la Transformación Digital**
 
-Framework PHP diseñado específicamente para acelerar el desarrollo de soluciones digitales para pequeños negocios. Con arquitectura MVC, inyección de dependencias y herramientas de seguridad integradas.
+Tukuchi es un framework PHP ágil y seguro, diseñado para acelerar el desarrollo de aplicaciones web modernas. Pensado especialmente para pequeños negocios y equipos que buscan rapidez, buenas prácticas y facilidad de uso, Tukuchi ofrece una arquitectura MVC robusta, validación avanzada, seguridad integrada y herramientas para el desarrollo profesional.
+
+---
+
+## Tabla de Contenidos
+
+- [Características Principales](#-características-principales)
+- [Requisitos](#-requisitos)
+- [Instalación](#-instalación)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Inicio Rápido](#-inicio-rápido)
+- [Guía "Hello World"](#-guía-hello-world)
+- [Configuración](#-configuración)
+- [Seguridad](#-seguridad)
+- [API y AJAX](#-api-y-ajax)
+- [Vistas y Layouts](#-vistas-y-layouts)
+- [Routing](#-routing)
+- [Base de Datos](#-base-de-datos)
+- [Validación Avanzada](#-validación-avanzada)
+- [Sistema de Logging](#-sistema-de-logging)
+- [Herramienta CLI](#-herramienta-cli)
+- [Testing](#-testing)
+- [Contribuir](#-contribuir)
+- [Licencia](#-licencia)
+- [¿Por qué Tukuchi?](#-por-qué-tukuchi)
+- [Documentación Adicional](#-documentación-adicional)
+
+---
 
 ## 🚀 Características Principales
 
-- **Arquitectura MVC**: Separación clara de responsabilidades
-- **Inyección de Dependencias**: Service Locator integrado
-- **Routing Flexible**: Sistema de rutas fácil de configurar
-- **Seguridad Integrada**: Protección CSRF, validación de datos
-- **Fácil de Usar**: Desarrollo rápido con componentes reutilizables
+- **Arquitectura MVC**: Separación clara de responsabilidades.
+- **Inyección de Dependencias**: Service Locator integrado.
+- **Routing Flexible**: Sistema de rutas fácil de configurar.
+- **Seguridad Integrada**: Protección CSRF, validación de datos.
+- **Fácil de Usar**: Desarrollo rápido con componentes reutilizables.
+
+---
 
 ## 📋 Requisitos
 
 - PHP 7.4 o superior
 - Apache con mod_rewrite habilitado
 - MySQL 5.7 o superior (opcional)
+
+---
 
 ## 🛠️ Instalación
 
@@ -41,35 +76,39 @@ Framework PHP diseñado específicamente para acelerar el desarrollo de solucion
    http://localhost/tukuchi
    ```
 
+---
+
 ## 📁 Estructura del Proyecto
 
 ```
 tukuchi/
 ├── app/                    # Aplicación
 │   ├── Controllers/        # Controladores
-│   ├── Models/            # Modelos
-│   └── views/             # Vistas
-│       ├── layouts/       # Layouts
-│       └── home/          # Vistas del controlador Home
-├── config/                # Configuración
-│   └── app.php           # Configuración principal
-├── core/                  # Núcleo del framework
-│   ├── App.php           # Aplicación principal
-│   ├── Controller.php    # Controlador base
-│   ├── CoreObject.php    # Objeto base
-│   ├── ServiceLocator.php # Inyector de dependencias
-│   └── ...               # Otros componentes core
-├── public/               # Archivos públicos
-│   ├── css/             # Estilos CSS
-│   ├── js/              # JavaScript
-│   └── uploads/         # Archivos subidos
-├── storage/             # Almacenamiento
-│   ├── cache/           # Caché
-│   └── logs/            # Logs
-├── .htaccess           # Configuración Apache
-├── index.php           # Punto de entrada
-└── README.md           # Este archivo
+│   ├── Models/             # Modelos
+│   └── views/              # Vistas
+│       ├── layouts/        # Layouts
+│       └── home/           # Vistas del controlador Home
+├── config/                 # Configuración
+│   └── app.php             # Configuración principal
+├── core/                   # Núcleo del framework
+│   ├── App.php             # Aplicación principal
+│   ├── Controller.php      # Controlador base
+│   ├── CoreObject.php      # Objeto base
+│   ├── ServiceLocator.php  # Inyector de dependencias
+│   └── ...                 # Otros componentes core
+├── public/                 # Archivos públicos
+│   ├── css/                # Estilos CSS
+│   ├── js/                 # JavaScript
+│   └── uploads/            # Archivos subidos
+├── storage/                # Almacenamiento
+│   ├── cache/              # Caché
+│   └── logs/               # Logs
+├── .htaccess               # Configuración Apache
+├── index.php               # Punto de entrada
+└── README.md               # Este archivo
 ```
+
+---
 
 ## 🎯 Inicio Rápido
 
@@ -112,6 +151,42 @@ Crear archivo `app/views/mi-vista/index.php`:
 http://localhost/tukuchi/mi-controlador
 ```
 
+---
+
+## 👋 Guía "Hello World"
+
+1. Crea un controlador en `app/Controllers/HelloController.php`:
+
+```php
+<?php
+namespace Tukuchi\App\Controllers;
+
+use Tukuchi\Core\Controller;
+
+class HelloController extends Controller
+{
+    public function indexAction()
+    {
+        $data = ['mensaje' => '¡Hola, mundo desde Tukuchi!'];
+        $this->renderWithLayout('hello/index', $data);
+    }
+}
+```
+
+2. Crea la vista en `app/views/hello/index.php`:
+
+```php
+<h1><?= $this->escape($mensaje) ?></h1>
+```
+
+3. Accede en tu navegador a:
+
+```
+http://localhost/tukuchi/hello
+```
+
+---
+
 ## 🔧 Configuración
 
 ### Base de Datos
@@ -140,6 +215,8 @@ Edita `config/app.php`:
 ]
 ```
 
+---
+
 ## 🛡️ Seguridad
 
 ### Protección CSRF
@@ -167,6 +244,8 @@ if (!$this->request->validateEmail($email)) {
     throw new \Exception('Email inválido');
 }
 ```
+
+---
 
 ## 📡 API y AJAX
 
@@ -201,6 +280,8 @@ Tukuchi.utils.ajax({
 });
 ```
 
+---
+
 ## 🎨 Vistas y Layouts
 
 ### Layout Principal
@@ -224,6 +305,8 @@ Tukuchi.utils.ajax({
 $this->renderWithLayout('mi-vista', $data, 'main');
 ```
 
+---
+
 ## 🔄 Routing
 
 ### Rutas Personalizadas
@@ -241,6 +324,8 @@ $router->addRoute('productos/{id}', 'producto', 'detalle');
 $url = $this->url('producto', 'detalle', ['id' => 123]);
 // Resultado: /producto/detalle/123
 ```
+
+---
 
 ## 📊 Base de Datos
 
@@ -320,6 +405,8 @@ class CreateUsersTable extends Migration
 }
 ```
 
+---
+
 ## 🔍 Validación Avanzada
 
 Sistema de validación robusto para formularios:
@@ -350,6 +437,8 @@ if ($validator->fails()) {
 - `in:value1,value2`, `not_in:value1,value2`
 - `regex:pattern`, `date`, `before:date`, `after:date`
 
+---
+
 ## 📝 Sistema de Logging
 
 Logging completo con diferentes niveles:
@@ -378,6 +467,8 @@ $logger->logException($exception);
 ]
 ```
 
+---
+
 ## 🛠️ Herramienta CLI
 
 Comandos de línea para gestión del framework:
@@ -401,12 +492,16 @@ php tukuchi.php version
 php tukuchi.php help
 ```
 
+---
+
 ## 🧪 Testing
 
 Sistema de testing integrado (en desarrollo):
 - TestCase base
 - Mocks y fixtures
 - Pruebas unitarias e integración
+
+---
 
 ## 🤝 Contribuir
 
@@ -416,17 +511,27 @@ Sistema de testing integrado (en desarrollo):
 4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Crea un Pull Request
 
+---
+
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
+---
+
 ## 🐦 ¿Por qué Tukuchi?
 
-Tukuchi significa "colibrí" en quechua. Como un colibrí, este framework es:
+Tukuchi significa "colibrí" en la lengua Yepuana. Como un colibrí, este framework es:
 - **Ágil**: Desarrollo rápido y preciso
 - **Eficiente**: Consume pocos recursos
 - **Versátil**: Se adapta a diferentes necesidades
 - **Hermoso**: Código limpio y elegante
+
+---
+
+## 📚 Documentación Adicional
+
+- [Documentación completa del framework](documentacion/FrameworkTukuchi.txt)
 
 ---
 
