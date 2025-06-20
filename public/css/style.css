@@ -1,0 +1,103 @@
+/* Framework Tukuchi - Estilos personalizados */
+
+:root {
+    --tukuchi-primary: #007bff;
+    --tukuchi-secondary: #6f42c1;
+    --tukuchi-success: #28a745;
+    --tukuchi-danger: #dc3545;
+    --tukuchi-warning: #ffc107;
+    --tukuchi-info: #17a2b8;
+    --tukuchi-light: #f8f9fa;
+    --tukuchi-dark: #343a40;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Efectos hover personalizados */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradientes personalizados */
+.gradient-primary {
+    background: linear-gradient(135deg, var(--tukuchi-primary) 0%, var(--tukuchi-secondary) 100%);
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, var(--tukuchi-primary), var(--tukuchi-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Botones personalizados */
+.btn-tukuchi {
+    background: linear-gradient(135deg, var(--tukuchi-primary) 0%, var(--tukuchi-secondary) 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-tukuchi:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    color: white;
+}
+
+/* Cards personalizadas */
+.card-tukuchi {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.card-tukuchi:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Utilidades de espaciado */
+.py-6 {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+}
+
+.my-6 {
+    margin-top: 4rem !important;
+    margin-bottom: 4rem !important;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+    
+    .display-5 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-section {
+        padding: 2rem 0;
+    }
+}
